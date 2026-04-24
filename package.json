@@ -4,10 +4,11 @@
   "description": "Cradly Landing Page",
   "main": "index.js",
   "dependencies": {
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.2.4",
+    "@tailwindcss/cli": "^4.2.4"
   },
   "scripts": {
-    "build": "npx tailwindcss -i ./src/css/input.css -o ./public/css/style.css --minify",
-    "watch": "npx tailwindcss -i ./src/css/input.css -o ./public/css/style.css --watch"
+    "build": "npx @tailwindcss/cli -i ./src/css/input.css -o ./public/css/style.css --minify",
+    "watch": "npx @tailwindcss/cli -i ./src/css/input.css -o ./public/css/style.css --watch"
   }
 }
