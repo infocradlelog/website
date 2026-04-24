@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cradly - Privacy-First Baby Tracker</title>
+    <meta name="description"
+        content="Cradly is a modern parenting assistant that allows you to track your baby's development completely privately and securely with local-first architecture and AES-256 encryption.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#D94C70',
+                        cradlybg: '#F9F6F4',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '2xl': '1rem',
+                        '3xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer base {
+        body {
+          @apply bg-cradlybg text-gray-800 antialiased selection:bg-primary/20;
+        }
+      }
+      @layer components {
+        .btn-primary {
+          @apply bg-primary text-white font-semibold py-4 px-10 rounded-2xl transition-all duration-300 hover:opacity-90 hover:-translate-y-1 active:scale-95 shadow-xl shadow-primary/25 flex items-center justify-center gap-2 text-lg;
+        }
+        .card {
+          @apply bg-white p-8 rounded-[2.5rem] shadow-sm border border-gray-100 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-2;
+        }
+        .glass {
+          @apply bg-white/70 backdrop-blur-md border border-white/20;
+        }
+      }
+      
+      /* Hide Google Translate Top Bar */
+      .goog-te-banner-frame.skiptranslate {
+        display: none !important;
+      }
+      body {
+        top: 0px !important;
+      }
+      .goog-te-gadget-icon {
+        display: none !important;
+      }
+      .goog-te-gadget-simple {
+        background-color: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        font-family: inherit !important;
+      }
+      .goog-te-menu-value span {
+        @apply text-gray-500 hover:text-primary transition-colors;
+      }
+    </style>
+
+    <link rel="icon" type="image/png" href="./assets/favicon.png">
+</head>
+
+<body class="bg-cradlybg text-gray-800 font-sans antialiased">
+
+    <!-- Hero Section -->
+    <header id="hero"
+        class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col md:flex-row items-center gap-12">
+        <div class="flex-1 text-center md:text-left">
+            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                Your Baby's Data <br> <span class="text-primary">Belongs Only to You.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl">
+                Safely store sleep, feeding, and growth data on your device with local-first architecture. Simplify
+                parenting without compromising on privacy.
+            </p>
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
+                <a href="https://apps.apple.com/tr/app/id6759116053" target="_blank" rel="noopener" class="btn-primary">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M17.5 14.5c0-2.5-2-4.5-4.5-4.5s-4.5 2-4.5 4.5 2 4.5 4.5 4.5 4.5-2 4.5-4.5zm-4.5 1.5c-.8 0-1.5-.7-1.5-1.5s.7-1.5 1.5-1.5 1.5.7 1.5 1.5-.7 1.5-1.5 1.5zM12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z" />
+                    </svg>
+                    App Store
+                </a>
+                <a href="javascript:void(0)" id="google-play-btn" class="btn-primary bg-gray-900 shadow-gray-900/20">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M3 20.5v-17c0-.8.7-1.5 1.5-1.5.3 0 .6.1.8.3L19.5 11c.6.4.6 1.3 0 1.7L5.3 21.7c-.2.2-.5.3-.8.3-.8 0-1.5-.7-1.5-1.5z" />
+                    </svg>
+                    Google Play
+                </a>
+            </div>
+        </div>
+        <div class="flex-1 relative">
+            <div
+                class="relative w-full max-w-[320px] mx-auto aspect-[9/19.5] bg-gray-900 rounded-[3rem] p-3 shadow-2xl overflow-hidden border-[8px] border-gray-800">
+                <img src="./assets/screenshot.png?v=2" alt="Cradly App Screenshot" class="w-full h-full object-contain object-top rounded-[2.2rem]" style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; transform: perspective(1px) translateZ(0); backface-visibility: hidden; filter: contrast(105%);">
+            </div>
+            <!-- Decorative Elements -->
+            <div
+                class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 rounded-full blur-3xl">
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Every Detail Under Control</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto text-lg">Fast and secure tracking tools to simplify your parenting
+                journey.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="card">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Sleep Tracking</h3>
+                <p class="text-gray-600">Record your baby's sleep patterns and quality second by second with a timer.
+                </p>
+            </div>
+            <div class="card">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                        </path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Feeding Tracking</h3>
+                <p class="text-gray-600">Easily manage breastfeeding, formula, and solid food processes; never miss a
+                    feeding.</p>
+            </div>
+            <div class="card">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Growth Statistics</h3>
+                <p class="text-gray-600">Track height, weight, and head circumference development according to WHO
+                    standards.</p>
+            </div>
+            <div class="card">
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Diaper Changes</h3>
+                <p class="text-gray-600">Easily report your baby's diaper change routine and health.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section id="privacy" class="bg-white py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-16">
+            <div class="flex-1 order-2 md:order-1">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">Privacy is Not a Feature, <span
+                        class="text-primary">It's Our Promise.</span></h2>
+                <div class="space-y-6 text-lg text-gray-600 mb-8">
+                    <p>
+                        Cradly works with a <strong>"Local-First"</strong> architecture. Your data lives only on your
+                        device, not in the cloud. This way, you can access your data anytime, even without internet.
+                    </p>
+                    <p>
+                        All data on your device is encrypted at a military level with <strong>AES-256
+                            (SQLCipher)</strong> technology. Even we can never access your data.
+                    </p>
+                </div>
+                <div class="bg-red-50 border-l-4 border-red-400 p-6 rounded-r-xl">
+                    <div class="flex gap-4">
+                        <svg class="w-6 h-6 text-red-500 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <p class="text-sm text-red-800">
+                            <strong>Important Note:</strong> Cradly is not a medical device or health application. It is
+                            a professional note-taking and tracking assistant.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-1 order-1 md:order-2 grid grid-cols-2 gap-4">
+                <div
+                    class="aspect-square bg-cradlybg rounded-3xl flex flex-col items-center justify-center p-6 text-center">
+                    <span class="text-3xl font-bold text-primary mb-2">0</span>
+                    <span class="text-sm font-semibold">Cookie</span>
+                </div>
+                <div
+                    class="aspect-square bg-gray-900 rounded-3xl flex flex-col items-center justify-center p-6 text-center text-white">
+                    <span class="text-3xl font-bold mb-2">100%</span>
+                    <span class="text-sm font-semibold">On-Device Encryption</span>
+                </div>
+                <div
+                    class="aspect-square bg-primary rounded-3xl flex flex-col items-center justify-center p-6 text-center text-white col-span-2">
+                    <span class="text-3xl font-bold mb-2">Local-First</span>
+                    <span class="text-sm font-semibold">Your Data Always with You</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Promo Section -->
+    <section id="video-promo" class="max-w-5xl mx-auto px-4 py-16 md:py-24 text-center">
+        <h2 class="text-3xl font-bold mb-12">Explore the World of Cradly</h2>
+        <div id="play-video-btn"
+            class="group relative aspect-video rounded-[2rem] overflow-hidden cursor-pointer shadow-2xl bg-gray-200 border-4 border-white">
+            <img src="./assets/video-cover.png" alt="Cradly Promo Video"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+            <div
+                class="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors flex items-center justify-center">
+                <div
+                    class="w-20 h-20 bg-white text-primary rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                    <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M4.516 7.548c0-.423.453-.69.83-.497l6.634 3.45c.376.195.376.745 0 .94l-6.634 3.45c-.377.193-.83-.074-.83-.497V7.548z">
+                        </path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="video-modal"
+        class="hidden fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <button id="close-modal-btn" class="absolute top-8 right-8 text-white/70 hover:text-white transition-colors">
+            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <div class="w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+            <video id="promo-video" controls class="w-full h-full">
+                <source src="./assets/main-promo.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Google Play Coming Soon Modal -->
+    <div id="play-store-modal"
+        class="hidden fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 max-w-md w-full text-center shadow-2xl relative">
+            <button id="close-play-modal-btn"
+                class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+            <div class="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-gray-900" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M3 20.5v-17c0-.8.7-1.5 1.5-1.5.3 0 .6.1.8.3L19.5 11c.6.4.6 1.3 0 1.7L5.3 21.7c-.2.2-.5.3-.8.3-.8 0-1.5-.7-1.5-1.5z" />
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold mb-4 text-gray-900">Google Play coming soon!</h3>
+            <p class="text-gray-600 mb-8 leading-relaxed">
+                Our Android application is currently in preparation. We will take our place in the Google Play Store
+                very soon.
+            </p>
+            <button id="ok-play-modal-btn" class="w-full btn-primary bg-gray-900 shadow-gray-900/20 py-4">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-200 mt-16 py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <div class="flex items-center justify-center gap-2 mb-6">
+                <img src="./assets/cradlelogicon.png" alt="Cradly Logo" class="w-12 h-12 object-contain">
+                <span class="text-xl font-bold tracking-tight">Cradly</span>
+            </div>
+            <p class="text-gray-500 mb-8">Privacy-focused modern baby tracking assistant.</p>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm font-medium text-gray-600 mb-8">
+                <a href="https://infocradlelog.github.io/legal/global.html#privacy" target="_blank" rel="noopener"
+                    class="hover:text-primary transition-colors">Privacy Policy</a>
+                <a href="https://infocradlelog.github.io/legal/global.html#eula" target="_blank" rel="noopener"
+                    class="hover:text-primary transition-colors">Terms of Service</a>
+                <a href="mailto:infocradlelog@gmail.com" target="_top"
+                    class="hover:text-primary transition-colors cursor-pointer relative z-10">Contact:
+                    infocradlelog@gmail.com</a>
+            </div>
+
+            <!-- Google Translate Widget -->
+            <div class="flex justify-center items-center gap-2 text-xs text-gray-400 mb-8">
+                <span>Translate:</span>
+                <div id="google_translate_element"></div>
+            </div>
+
+            <div class="mt-12 pt-8 border-t border-gray-100 text-sm text-gray-400">
+                &copy; 2026 Cradly. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="./js/main.js"></script>
+
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript"
+        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- Cloudflare Web Analytics -->
+    <!-- Analytics Script will be placed here -->
+</body>
+
+</html>
